@@ -5,7 +5,7 @@ import Radio from '@material-ui/core/Radio'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import FormControl from '@material-ui/core/FormControl'
-import FormLabel from '@material-ui/core/FormLabel'
+import Work from './work/Work'
 
 class AppBar extends Component {
   state = {
@@ -18,39 +18,42 @@ class AppBar extends Component {
 
   render () {
     return (
-      <Header>
-        <div>
-          <Logo id='logo' src={astronaut} alt='astronaut' />
-        </div>
+      <React.Fragment>
+        <Header>
+          <div>
+            <Logo id='logo' src={astronaut} alt='astronaut' />
+          </div>
 
-        <Choose>
-          <FormControl component='fieldset'>
-            <FormLabel component='legend'>My Work</FormLabel>
-            <RadioGroup
-              aria-label='work'
-              name='work'
-              value={this.state.value}
-              onChange={this.handleChange}
-            >
-              <FormControlLabel
-                value='front'
-                control={<Radio color='primary' />}
-                label='Front-end'
-              />
-              <FormControlLabel
-                value='back'
-                control={<Radio color='primary' />}
-                label='Back-end'
-              />
-              <FormControlLabel
-                value='full'
-                control={<Radio color='primary' />}
-                label='Full-stack'
-              />
-            </RadioGroup>
-          </FormControl>
-        </Choose>
-      </Header>
+          <Container>
+            <FormControl component='fieldset'>
+              <RadioGroup
+                aria-label='work'
+                name='work'
+                value={this.state.value}
+                onChange={this.handleChange}
+              >
+                <FormControlLabel
+                  value='front'
+                  control={<Radio color='primary' />}
+                  label='Front-end'
+                />
+                <FormControlLabel
+                  value='back'
+                  control={<Radio color='primary' />}
+                  label='Back-end'
+                />
+                <FormControlLabel
+                  value='full'
+                  control={<Radio color='primary' />}
+                  label='Full-stack'
+                />
+              </RadioGroup>
+            </FormControl>
+          </Container>
+        </Header>
+
+        <Work currentChoice={this.state.value} />
+      </React.Fragment>
     )
   }
 }
@@ -71,8 +74,11 @@ const Logo = styled.img`
   width: 10rem;
 `
 
-const Choose = styled.div`
+const Container = styled.div`
   text-align: center;
+  text-transform: uppercase;
+  letter-spacing: .5rem;
+  padding-top: 1rem;
 `
 
 export default AppBar
